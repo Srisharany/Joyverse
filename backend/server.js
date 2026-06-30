@@ -71,6 +71,104 @@
 
 
 
+// import express from "express";
+// import mongoose from "mongoose";
+// import cors from "cors";
+// import dotenv from "dotenv";
+// app.options("*", cors());
+// import authRoutes from "./routes/authroute.js";
+// import userRoutes from "./routes/userroute.js";
+// import gameRoutes from "./routes/gameroute.js";
+
+// // Load environment variables
+// dotenv.config();
+
+// const app = express();
+
+// // ===============================
+// // Middleware
+// // ===============================
+
+// app.use(cors({
+//   origin: [
+//     "http://localhost:5173",
+//     "https://joyverse-eight.vercel.app"
+//   ],
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   credentials: true,
+//   allowedHeaders: ["Content-Type", "Authorization"],
+// }));
+
+// app.use(express.json());
+
+// // ===============================
+// // Routes
+// // ===============================
+
+// app.get("/", (req, res) => {
+//   res.json({
+//     success: true,
+//     message: "JoyVerse Backend API is Running 🚀",
+//   });
+// });
+
+// app.use("/backend/auth", authRoutes);
+// app.use("/backend/users", userRoutes);
+// app.use("/backend/games", gameRoutes);
+
+// // ===============================
+// // 404 Handler
+// // ===============================
+
+// app.use((req, res) => {
+//   res.status(404).json({
+//     success: false,
+//     message: `Route not found: ${req.originalUrl}`,
+//   });
+// });
+
+// // ===============================
+// // MongoDB Connection
+// // ===============================
+
+// mongoose
+//   .connect(process.env.MONGO)
+//   .then(() => {
+//     console.log("✅ MongoDB Connected");
+
+//     const PORT = process.env.PORT || 5000;
+
+//     app.listen(PORT, () => {
+//       console.log(`🚀 Server running on port ${PORT}`);
+//     });
+//   })
+//   .catch((err) => {
+//     console.error("❌ MongoDB Connection Error");
+//     console.error(err);
+//   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -80,7 +178,7 @@ import authRoutes from "./routes/authroute.js";
 import userRoutes from "./routes/userroute.js";
 import gameRoutes from "./routes/gameroute.js";
 
-// Load environment variables
+// Load .env
 dotenv.config();
 
 const app = express();
@@ -89,15 +187,13 @@ const app = express();
 // Middleware
 // ===============================
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173", // Local React
-      "https://joyverse.vercel.app", // Replace after Vercel deployment
-    ],
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: "https://joyverse-eight.vercel.app",
+  credentials: true,
+}));
+
+app.use(express.json());
+app.options("*", cors());
 
 app.use(express.json());
 
@@ -117,7 +213,7 @@ app.use("/backend/users", userRoutes);
 app.use("/backend/games", gameRoutes);
 
 // ===============================
-// 404 Handler
+// 404
 // ===============================
 
 app.use((req, res) => {
@@ -128,7 +224,7 @@ app.use((req, res) => {
 });
 
 // ===============================
-// MongoDB Connection
+// MongoDB
 // ===============================
 
 mongoose
