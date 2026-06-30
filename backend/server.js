@@ -93,7 +93,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173", // Local React
-      "https://your-frontend.vercel.app", // Replace after Vercel deployment
+      "https://joyverse.vercel.app", // Replace after Vercel deployment
     ],
     credentials: true,
   })
