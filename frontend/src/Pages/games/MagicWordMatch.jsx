@@ -76,7 +76,7 @@ export default function MagicWordMatch() {
 
   const logGameSession = async (questionNumber, emotion, isCorrect, isFinal = false) => {
     try {
-      await axios.post('http://localhost:5000/backend/games/log-game-session', {
+      await axios.post('${import.meta.env.VITE_API_URL}', {
         userId: currentUser?._id,
         gameName: 'MagicWordMatch',
         sessionId: sessionId.current,

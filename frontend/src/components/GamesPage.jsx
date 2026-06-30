@@ -22,7 +22,7 @@ export default function Games() {
         if (storedUser) {
           const parsedUser = JSON.parse(storedUser);
           
-          const response = await fetch(`http://localhost:5000/backend/users/username/${parsedUser.username}`);
+          const response = await fetch( `${import.meta.env.VITE_API_URL}/backend/users/username/${parsedUser.username}`);
           if (response.ok) {
             const userData = await response.json();
             setUser(userData);

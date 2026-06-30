@@ -100,7 +100,7 @@ export default function AnimalWordGame() {
   const logGameSession = async (questionNumber, isCorrect, isFinal = false) => {
     const emotion = ['happy', 'sad', 'angry', 'surprised', 'neutral','disgust','fear'][Math.floor(Math.random() * 5)];
     try {
-      await axios.post('http://localhost:5000/backend/games/log-game-session', {
+      await axios.post('${import.meta.env.VITE_API_URL}', {
         userId,
         gameName: 'AnimalWordGame',
         sessionId: sessionId.current,

@@ -19,7 +19,7 @@ const AdminPage = () => {
           ? "/backend/users/therapist/requests/pending"
           : "/backend/users/therapist/approved";
         
-        const res = await fetch(`http://localhost:5000${endpoint}`);
+        const res = await fetch(`${import.meta.env.VITE_API_URL}`);
         const data = await res.json();
 
         if (res.ok) {
@@ -43,7 +43,7 @@ const AdminPage = () => {
       setMessage({ text: "Processing approval...", type: "info" });
       
       const res = await fetch(
-        `http://localhost:5000/backend/users/therapist/approve/${username}`,
+        `${import.meta.env.VITE_API_URL}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -73,7 +73,7 @@ const AdminPage = () => {
       setMessage({ text: "Deleting therapist...", type: "info" });
       
       const res = await fetch(
-        `http://localhost:5000/backend/users/delete/${userId}`,
+        `${import.meta.env.VITE_API_URL}`,
         {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },

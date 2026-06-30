@@ -13,7 +13,9 @@ export default function TherapistDashboard() {
   useEffect(() => {
     const fetchUsersWithUserRole = async () => {
       try {
-        const res = await fetch("http://localhost:5000/backend/users/role/user/all");
+       const res = await fetch(
+  `${import.meta.env.VITE_API_URL}/backend/users`
+);
         if (!res.ok) throw new Error("Failed to fetch users.");
         const data = await res.json();
         setChildren(data);

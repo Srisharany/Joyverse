@@ -73,7 +73,7 @@ export default function ChildProfile() {
 
         // Fetch user data from the backend
         const userRes = await fetch(
-          `http://localhost:5000/backend/users/username/${username}`
+          `${import.meta.env.VITE_API_URL}`
         );
         // Throw an error if the user data fetch was not successful
         if (!userRes.ok) throw new Error("Failed to fetch user data");
@@ -81,7 +81,7 @@ export default function ChildProfile() {
 
         // Fetch game sessions data from the backend
         const sessionsRes = await fetch(
-          `http://localhost:5000/backend/users/games/by-username/${username}`
+          `${import.meta.env.VITE_API_URL}`
         );
         // Parse sessions data; if fetch fails, default to an empty array
         const sessionsData = await sessionsRes.ok ? await sessionsRes.json() : [];
@@ -136,7 +136,7 @@ export default function ChildProfile() {
     setSuggestingGame(gameName); // Set the game being suggested to update UI
     try {
       const res = await fetch(
-        `http://localhost:5000/backend/users/suggest-game/${username}`,
+        `${import.meta.env.VITE_API_URL}`,
         {
           method: "POST", // HTTP POST method
           headers: { "Content-Type": "application/json" }, // Specify content type as JSON
